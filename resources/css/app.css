@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Sora', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    line-height: 22px;
+}
+  
+code {
+    font-family: 'Sora', sans-serif;
+}
