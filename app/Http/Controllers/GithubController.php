@@ -7,24 +7,23 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class GoogleAuthController extends Controller
+class GithubController extends Controller
 {
     public function redirect() 
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('github')->redirect();
     }
     
-    public function callbackGoogle()
+    public function callbackGithub()
     {
         try {
-            $google_user = Socialite::driver('google')->user();
-            $user = User::where('google_id' , $google_user->getId())->first();
+            $github_user = Socialite::driver('github')->user();
+            $user = User::where('github_id' , $github_user->getId())->first();
             if(!$user){
                 $new_user = User::create([
-                    "fullName" => $google_user->getName(),
-                    "email" => $google_user->getEmail(),
-                    "google_id" => $google_user->getId(),
-                    // "profile" => $google_user->getAvatar(),
+                    "fullName" => $github_user->name(),
+                    "email" => $github_user->email(),
+                    "github_id" => $github_user->id(),
                 ]);
 
                 Auth::login($new_user);

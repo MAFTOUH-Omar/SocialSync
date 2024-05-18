@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable()->unique();
             $table->string('country')->nullable();
             $table->string('google_id')->nullable();
+            $table->string('github_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -38,7 +39,7 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

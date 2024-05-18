@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     public function Home ()
     {
-        return view('layouts.app');
+        return view('auth.register');
     }
 }

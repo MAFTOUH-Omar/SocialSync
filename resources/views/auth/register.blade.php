@@ -1,80 +1,47 @@
-<x-guest-layout class="">
-    <form method="POST" action="{{ route('register.user') }}" enctype="multipart/form-data">
-        @csrf
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    @vite('resources/css/app.css')
+    <style>
+        .poppins{
+            font-family: 'Poppins', sans-serif;
+        }
 
-        <div class="flex items-center mt-4">
-            <!-- Name -->
-            <div class="w-full md:w-1/2 mx-1">
-                <x-input-label for="fullName" :value="__('Full Name')" />
-                <x-text-input id="fullName" class="block mt-1 w-full" type="text" name="fullName" :value="old('fullName')" required autofocus autocomplete="fullName" />
-                <x-input-error :messages="$errors->get('fullName')" class="mt-2" />
-            </div>
-    
-            <!-- Email Address -->
-            <div class="w-full md:w-1/2 mx-1">
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="email" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
+        .syne{
+            font-family: 'Syne', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-200">
+    <div class="flex">
+        <div class="flex justify-center items-center md:w-1/2 h-screen">
+            <img src="./assets/icons/SocialSync.svg" class="md:w-[65%]" alt="">
         </div>
-
-        <div class="flex items-center mt-4">
-            <!-- Phone number -->
-            <div class="w-full md:w-1/2 mx-1">
-                <x-input-label for="phone_number" :value="__('Phone Number')" />
-                <x-text-input id="phone_number" class="block mt-1 w-full" type="text" name="phone_number" :value="old('phone_number')" required autocomplete="phone_number" />
-                <x-input-error :messages="$errors->get('phone_number')" class="mt-2" />
-            </div>
-    
-            <!-- Country -->
-            <div class="w-full md:w-1/2 mx-1">
-                <x-input-label for="country" :value="__('Country')" />
-                <x-text-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')" required autocomplete="country" />
-                <x-input-error :messages="$errors->get('country')" class="mt-2" />
-            </div>
-        </div>
-
-        <!-- Profile -->
-        <div class="flex items-center mt-4">
-            <div class="w-full mx-1">
-                <x-input-label for="profile" :value="__('Profile Image')" />
-                <input id="profile" type="file" name="profile" class="block mt-1 w-full dark:text-white" accept="image/*">
-                <x-input-error :messages="$errors->get('profile')" class="mt-2" />
-            </div>
-        </div>
-
-        <div class="flex items-center mt-4">
-            <!-- Password -->
-            <div class="w-full mx-1">
-                <x-input-label for="password" :value="__('Password')" />
-    
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-    
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+        <div class="flex justify-center items-start md:w-1/2 flex-col">
+            <h1 class="text-[64px] mb-2 font-extrabold text-blue-600">Ça se passe maintenant</h1>
+            <p class="text-[31px] mb-4 font-extrabold text-blue-400">Inscrivez‑vous.</p>
+            <!-- Button OAuth -->
+            <a href="{{ route('google-auth') }}"  class="w-1/2 bg-white shadow-lg mb-1 hover:bg-slate-100 border-2 border-blue-500 rounded-3xl flex items-center justify-center py-2 px-14 ">
+                <img src="./assets/icons/google.svg" class="w-[20px] h-[20px] mx-2" alt="">
+                <span class="text-slate-400 font-bold">S'inscrire avec google</span>
             </a>
-
-            <x-primary-button class="ms-3 bg-green-500 hover:bg-green-400 dark:bg-green-500 hover:dark:bg-green-400 dark:text-white">
-                {{ __('Register') }}
-            </x-primary-button>
+            <a href="{{ route('github-auth') }}" class="w-1/2 bg-white shadow-lg mb-1 hover:bg-slate-100 border-2 border-blue-500 rounded-3xl flex items-center justify-center py-2 px-14 " >
+                <img src="./assets/icons/github.svg" class="w-[20px] h-[20px] mx-2" alt="">
+                <span class="text-slate-400 font-bold">S'inscrire avec github</span>
+            </a>
+            <!-- Register simple -->
+            <span class="text-center text-sm w-1/2 my-1">Ou</span>
+            <button class="w-1/2 bg-blue-500 hover:bg-blue-400 shadow-lg mb-1 rounded-3xl flex items-center justify-center py-2 px-14 ">
+                <span class="text-white font-bold">Créer un compte</span>   
+            </button>
+            <span class="text-center w-1/2 font-semibold my-1">Vous avez déjà un compte ?</span>
+            <a href="{{ route('login') }}" class="w-1/2 border-blue-500 bg-white hover:bg-slate-100 border-2 shadow-lg mb-1 rounded-3xl flex items-center justify-center py-2 px-14 ">
+                <span class="text-blue-500 font-bold">Se connecter</span>   
+            </a>
         </div>
-        <div class="text-center my-4">
-            <hr class="my-2">
-            <span class="font-bold text-center dark:text-white">Or</span>
-            <div class="flex items-center justify-center my-1">
-                <a href="{{ route('google-auth') }}"  class="flex items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                    <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="-0.5 0 48 48" version="1.1"> <title>Google-color</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Color-" transform="translate(-401.000000, -860.000000)"> <g id="Google" transform="translate(401.000000, 860.000000)"> <path d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24" id="Fill-1" fill="#FBBC05"> </path> <path d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333" id="Fill-2" fill="#EB4335"> </path> <path d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667" id="Fill-3" fill="#34A853"> </path> <path d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24" id="Fill-4" fill="#4285F4"> </path> </g> </g> </g> </svg>
-                    <span>Continue with Google</span>
-                </a>
-            </div>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+</body>
+</html>
