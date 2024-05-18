@@ -17,23 +17,33 @@ class GithubController extends Controller
     public function callbackGithub()
     {
         try {
-            $github_user = Socialite::driver('github')->user();
-            $user = User::where('github_id' , $github_user->getId())->first();
-            if(!$user){
-                $new_user = User::create([
-                    "fullName" => $github_user->name(),
-                    "email" => $github_user->email(),
-                    "github_id" => $github_user->id(),
-                ]);
+            $githubUser = Socialite::driver('github')->user();
 
-                Auth::login($new_user);
+            // Rechercher l'utilisateur par son GitHub ID
+            $user = User::where('github_id', $githubUser->id)->first();
+            
+            if (!$user) {
+                // Rechercher l'utilisateur par son adresse e-mail
+                $user = User::where('email', $githubUser->email)->first();
 
-                return redirect()->intended('dashboard');
-            } else {
-                Auth::login($user);
-
-                return redirect()->intended('dashboard');
+                if ($user) {
+                    // Mettre à jour l'ID GitHub de l'utilisateur existant
+                    $user->update(['github_id' => $githubUser->id]);
+                } else {
+                    // Créer un nouvel utilisateur s'il n'existe pas
+                    $user = User::create([
+                        'fullName' => $githubUser->name,
+                        'email' => $githubUser->email,
+                        'github_id' => $githubUser->id,
+                    ]);
+                }
             }
+
+            // Connecter l'utilisateur
+            Auth::login($user);
+
+            // Rediriger vers le tableau de bord
+            return redirect()->intended('dashboard');
         } catch ( \Throwable $th ){
             dd('Something went wrong! ' . $th->getMessage());
         }
