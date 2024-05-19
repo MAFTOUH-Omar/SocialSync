@@ -37,13 +37,16 @@ class RegisteredUserController extends Controller
             'phone_number' => ['nullable', 'string', 'max:255', 'unique:'.User::class],
             'country' => ['nullable', 'string', 'max:255'],
         ]);
-
+    
         if ($request->hasFile('profile')) {
-            $imagePath = $request->file('profile')->store('profile_images');
+            $image = $request->file('profile');
+            $imageName = time().'_'.$image->getClientOriginalName();
+            $imagePath = 'profile_images/' . $imageName;
+            $image->move(public_path('profile_images'), $imageName);
         } else {
             $imagePath = null;
         }
-
+    
         $user = User::create([
             'fullName' => $request->fullName,
             'email' => $request->email,
@@ -52,11 +55,11 @@ class RegisteredUserController extends Controller
             'phone_number' => $request->phone_number,
             'country' => $request->country,
         ]);
-
+    
         event(new Registered($user));
-
+    
         Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
-    }
+    
+        return redirect(route('home'));
+    }    
 }

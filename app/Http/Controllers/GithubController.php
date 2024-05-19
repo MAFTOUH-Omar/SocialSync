@@ -43,7 +43,7 @@ class GithubController extends Controller
             Auth::login($user);
 
             // Rediriger vers le tableau de bord
-            return redirect()->intended('dashboard');
+            return redirect()->intended('homr');
         } catch ( \Throwable $th ){
             dd('Something went wrong! ' . $th->getMessage());
         }

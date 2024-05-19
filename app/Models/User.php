@@ -17,7 +17,8 @@ class User extends Authenticatable
         'profile',
         'phone_number',
         'country',
-        'google_id'
+        'google_id',
+        'github_id'
     ];
 
     /**

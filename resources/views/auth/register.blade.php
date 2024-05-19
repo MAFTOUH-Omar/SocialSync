@@ -84,7 +84,7 @@
                         <div class="flex justify-center items-center mt-4 mx-5">
                             <!-- Profile -->
                             <div class="w-full mx-1">
-                                <label>Profile</label>
+                                <label>Photo de profile</label>
                                 <input type="file" name="profile" required class="rounded-xl py-2 px-2 border-2 border-blue-500 w-full">
                                 <x-input-error :messages="$errors->get('profile')" class="mt-2" />
                             </div>

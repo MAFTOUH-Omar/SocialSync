@@ -4,14 +4,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GithubController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', [HomeController::class, 'Home']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home', function () {
+    return view('home');
+})->middleware(['auth', 'verified'])->name('home');
 
 // Google Oauth
 Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
@@ -19,6 +20,8 @@ Route::get('/auth/google/call-back', [GoogleAuthController::class, 'callbackGoog
 // Github Oauth
 Route::get('/auth/github', [GithubController::class, 'redirect'])->name('github-auth');
 Route::get('/auth/github/call-back', [GithubController::class, 'callbackGithub']);
+// User Routes
+Route::middleware('auth')->get('/user-info', [UserController::class, 'showProfile']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
