@@ -28,11 +28,3 @@
         </div>
     </body>
 </html>
-<script>
-        function applyInitialTheme() {
-        var currentTheme = localStorage.getItem('theme');
-        document.body.classList.toggle('dark', currentTheme === 'dark');
-    }
-
-    applyInitialTheme();
-</script>
