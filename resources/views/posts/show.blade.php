@@ -6,7 +6,7 @@
     <p class="text-gray-600">by {{ $post->user->name }} | {{ $post->created_at->diffForHumans() }}</p>
     <p class="text-gray-800">{{ $post->content }}</p>
     @if ($post->image)
-        <img src="{{ asset('storage/' . $post->image) }}" class="w-full h-auto mt-2 rounded" alt="Post Image">
+        <img src="{{ asset('storage/posts/images/' . $post->image) }}" class="w-full h-auto mt-2 rounded" alt="Post Image">
     @endif
     <div class="flex items-center mt-2">
         <p class="text-gray-600">Likes: {{ $post->likes_number }} | Shares: {{ $post->shares_number }}</p>

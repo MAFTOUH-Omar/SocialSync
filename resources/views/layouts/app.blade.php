@@ -8,8 +8,8 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Archivo+Black&family=Kanit:wght@300&family=Rajdhani:wght@500&family=Sora:wght@500&family=Source+Code+Pro:wght@300&family=Ubuntu&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha384-lCS6qG9Z6k6PQjVEZ8FBb2Kax3U0STrn3U02p4rCU5s62Ke4tllkUz3/Ea6BxQnP" crossorigin="anonymous">
 
         <!-- Scripts -->
         @vite('resources/css/app.css')

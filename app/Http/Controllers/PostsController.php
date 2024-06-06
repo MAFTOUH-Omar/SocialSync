@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Posts;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('user', 'comments.user')->get();
+        $posts = Posts::with('user', 'comments.user')->get();
         return view('posts.index', compact('posts'));
     }
 
     public function show($id)
     {
-        $post = Post::with('user', 'comments.user')->findOrFail($id);
+        $post = Posts::with('user', 'comments.user')->findOrFail($id);
         return view('posts.show', compact('post'));
     }
 
@@ -32,7 +34,7 @@ class PostsController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $post = new Post();
+        $post = new Posts();
         $post->user_id = Auth::id();
         $post->post_name = $request->post_name;
         $post->type = $request->type;

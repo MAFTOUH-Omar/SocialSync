@@ -6,17 +6,14 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GithubController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\ConmmentsController;
+use App\Http\Controllers\CommentsController;
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', [HomeController::class, 'Home']);
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
-
+Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 // Google Oauth
 Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('/auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
@@ -36,5 +33,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
 Route::get('/posts/{id}', [PostsController::class, 'show'])->name('posts.show');
-Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
 require __DIR__.'/auth.php';

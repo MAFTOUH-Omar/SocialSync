@@ -12,7 +12,7 @@
             </div>
             <!-- Avatar -->
             <button class="space-x-4 flex items-center" id="dropdownDefaultButton" data-dropdown-toggle="dropdown">
-                <img src="{{ $user->profile ? asset($user->profile) : asset('assets/icons/user.svg') }}" alt="Avatar" class="border-blue-500 border-2 rounded-full w-[50px] h-[50px]">            
+                <img src="{{ $user->profile ? asset('profile_images/'.$user->profile) : asset('assets/icons/user.svg') }}" alt="Avatar" class="border-blue-500 border-2 rounded-full w-[50px] h-[50px]">
             </button>
             <!-- Drop down profile menu -->
             <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
