@@ -1,9 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Home') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
+
+@section('content')
+<div class="bg-white shadow rounded p-4">
+    <div class="mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">{{ __('Posts') }}</h2>
+    </div>
 
     @foreach ($posts as $post)
         <div class="post mb-6">
@@ -34,4 +35,5 @@
             </form>
         </div>
     @endforeach
-</x-app-layout>
+</div>
+@endsection
