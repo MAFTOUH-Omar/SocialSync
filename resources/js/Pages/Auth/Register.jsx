@@ -106,10 +106,9 @@ export default function Register() {
                     >
                         Already registered?
                     </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <button onClick={submit}  className='bg-blue-500 hover:bg-blue-400 rounded-md px-4 py-1 text-white font-bold ms-4'>
                         Register
-                    </PrimaryButton>
+                    </button>
                 </div>
             </form>
         </GuestLayout>
