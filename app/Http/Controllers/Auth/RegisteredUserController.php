@@ -10,16 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create(): Response
     {
-        return view('auth.register');
+        return Inertia::render('Auth/Register');
     }
 
     /**
@@ -30,36 +31,21 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'fullName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string' , Rules\Password::defaults()],
-            'profile' => ['nullable', 'image', 'max:2048', 'mimes:png,jpg,jpeg,svg'],
-            'phone_number' => ['nullable', 'string', 'max:255', 'unique:'.User::class],
-            'country' => ['nullable', 'string', 'max:255'],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-    
-        if ($request->hasFile('profile')) {
-            $image = $request->file('profile');
-            $imageName = time().'_'.$image->getClientOriginalName();
-            $imagePath = 'profile_images/' . $imageName;
-            $image->move(public_path('profile_images'), $imageName);
-        } else {
-            $imagePath = null;
-        }
-    
+
         $user = User::create([
-            'fullName' => $request->fullName,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'profile' => $imagePath,
-            'phone_number' => $request->phone_number,
-            'country' => $request->country,
         ]);
-    
+
         event(new Registered($user));
-    
+
         Auth::login($user);
-    
-        return redirect(route('home'));
-    }    
+
+        return redirect(route('dashboard', absolute: false));
+    }
 }
