@@ -15,6 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Posts::with('user', 'comments.user')->get(); // Use Posts instead of Post
-        return view('home', compact('posts'));
+        // return view('home', compact('posts'));
+        return view('profile.profile');
     }
 }

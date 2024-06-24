@@ -8,7 +8,8 @@ class UserController extends Controller
 {
     public function showProfile(Request $request)
     {
-        $user = $request->user();
-        return view('profile', compact('user'));
+        // $user = $request->user();
+        // return view('profile', compact('user'));
+        return view("profile.profile");
     }
 }

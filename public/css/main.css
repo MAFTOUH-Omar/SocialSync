@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: #0088cc;
+
+    --white1-color: #ffffff;
+    --white2-color: #e6f3fa;
+    --white3-color: #cce7f5;
+    --white4-color: #b3dbf0;
+    --white5-color: #99cfeb;
+    --blue1-color: #66b8e0;
+    --blue2-color: #80c4e6;
+    --blue3-color: #4dacdb;
+
+    --font-color: #000e14;
+    --font2-color: #003652;
+    --font3-color: #72727287;
+
+    --hedding-color: #00375282;
+
+    --notification-color: #cc4400;
+
+}
+
+body {
+    background-color: var(--white2-color);
+    color: var(--font-color);
+}
+
+.color-main {
+    background-color: var(--main-color);
+}
+
+.color-1 {
+    background-color: var(--white1-color);
+}
+
+.color-2 {
+    background-color: var(--white2-color);
+}
+
+.color-3 {
+    background-color: var(--white3-color);
+}
+
+.color-4 {
+    background-color: var(--white4-color);
+}
+
+.color-5 {
+    background-color: var(--white5-color);
+}
+
+.color-6 {
+    background-color: var(--blue1-color);
+}
+
+.color-7 {
+    background-color: var(--blue2-color);
+}
+
+.color-8 {
+    background-color: var(--blue3-color);
+}
+
+.font-color-1 {
+    color: var(--font-color);
+}
+
+.font-color-2 {
+    color: var(--font2-color);
+}
+
+.font-color-3 {
+    color: var(--font3-color);
+}
+
+.notification-color {
+    color: var(--notification-color);
+}
+
+.border-shadow {
+    box-shadow: 0;
+    transition: all 0.1s ease-in-out;
+}
+
+.border-shadow:focus {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+.link-active {
+    font-weight: 600;
+}
+
+.link-nav-bar::before {
+    transform: rotateY(90deg);
+}
+
+.link-active::before {
+    transform: rotateY(0deg);
+}
+
+.icon-phone {
+    width: 40px;
+    height: 40px;
+}
+
+.tooltip::before {
+    content: attr(content-tooltip);
+    min-width: 70px;
+    padding: 10px 5px;
+    position: absolute;
+    background-color: var(--white3-color);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    bottom: -23px;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 0;
+    font-size: 0.8em;
+    visibility: hidden;
+    transition: all ease-in-out 600ms;
+}
+
+.tooltip:hover::before {
+    bottom: -43px;
+    opacity: 0.7;
+    visibility: visible;
+}
+
+#changePhoto.active {
+    top: 9rem;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.heart-icons.active .big-heart {
+    animation: heartAnimation 0.3s ease-in-out;
+}
+
+@keyframes heartAnimation {
+    0% {
+        font-size: 20px;
+    }
+
+    100% {
+        font-size: 8rem;
+    }
+}
+
+.heart-icons.active .small-heart {
+    animation: heartSmallAnimation 0.3s ease-in-out;
+    animation-delay: 0.3s;
+}
+
+@keyframes heartSmallAnimation {
+    0% {
+        top: 1rem;
+    }
+
+    100% {
+        top: -1rem;
+    }
+}

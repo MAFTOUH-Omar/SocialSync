@@ -4,17 +4,60 @@
 
 
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Syne:wght@400;500;600;700;800&display=swap');
-*{
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Syne:wght@400;500;600;700;800&display=swap'); */
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
-.poppins{
+/* .poppins{
     font-family: 'Poppins', sans-serif;
 }
 
 .syne{
     font-family: 'Syne', sans-serif;
+} */
+
+@layer components {
+    .circle-photo {
+        @apply w-7 h-7 rounded-full overflow-hidden flex justify-center shadow-lg cursor-pointer relative;
+    }
+
+    .info-post {
+        @apply p-3 cursor-pointer flex gap-4 items-center;
+    }
+
+    .no-active-info-post {
+        @apply invisible opacity-0 top-2;
+    }
+
+    .active-info-post {
+        @apply visible opacity-100 top-10;
+    }
+
+    .no-animation-heart {
+        @apply invisible opacity-0;
+    }
+
+    .animation-heart {
+        @apply visible opacity-100;
+    }
+
+    .container-grid {
+        @apply w-full px-4 py-2 flex flex-col gap-5 mb-10;
+    }
+
+    .box-design {
+        @apply w-full rounded-lg bg-white shadow p-4 flex flex-col gap-3;
+    }
+
+    .design-box-photos {
+        @apply w-[31%] h-24 rounded-lg flex items-center justify-center bg-[#e6f3fa] overflow-hidden cursor-pointer;
+    }
+
+    .design-photos {
+        @apply max-w-96 h-28 group-hover:scale-125 duration-300 ease-in-out;
+    }
+
 }
